@@ -30,8 +30,13 @@ jobs:
         path: .git/lfs
         key: lfs-${{ hashFiles('.gitattributes') }}
 
-    - name: Pull LFS files
-      run: git lfs pull
+    - name: Configure upstream remote for LFS
+      run: |
+        git remote add upstream https://github.com/edwardbair/SpiPy.git || true
+        git config lfs.url https://github.com/edwardbair/SpiPy.git/info/lfs
+
+    - name: Pull LFS files from upstream
+      run: git lfs pull upstream
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5

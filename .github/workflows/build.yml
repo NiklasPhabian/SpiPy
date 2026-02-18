@@ -21,7 +21,17 @@ jobs:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0  # Full history for setuptools-scm
-        lfs: true  # Pull LFS files for tests
+        lfs: false  # Don't auto-pull LFS, we'll cache it
+
+    - name: Cache Git LFS files
+      uses: actions/cache@v4
+      id: lfs-cache
+      with:
+        path: .git/lfs
+        key: lfs-${{ hashFiles('.gitattributes') }}
+
+    - name: Pull LFS files
+      run: git lfs pull
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
@@ -56,7 +66,12 @@ jobs:
     - name: Run tests
       shell: bash -l {0}
       run: |
-        pytest -v
+        # Skip tests requiring large LFS files if not available
+        if [ ! -f tests/data/LUT_MODIS.mat ]; then
+          pytest -v --ignore=tests/test_legacy.py --ignore=tests/test_comparison.py
+        else
+          pytest -v
+        fi
 
     - name: Test import
       shell: bash -l {0}

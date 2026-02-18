@@ -5,6 +5,8 @@
 [![Build Status](https://github.com/edwardbair/SpiPy/workflows/Build%20and%20Test/badge.svg)](https://github.com/edwardbair/SpiPy/actions)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXX)
 
+**[📦 View Source on GitHub](https://github.com/NiklasPhabian/SpiPy)** | **[📖 Documentation](https://spipy.readthedocs.io)** | **[🐛 Report Issues](https://github.com/NiklasPhabian/SpiPy/issues)**
+
 SpiPy is a Python implementation of [SPIRES](https://ieeexplore.ieee.org/document/9290428) (SPectral Inversion of REflectance from Snow), originally implemented in MATLAB ([SPIRES GitHub repository](https://github.com/edwardbair/SPIRES)).
 
 ## Overview

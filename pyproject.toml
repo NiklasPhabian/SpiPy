@@ -76,3 +76,20 @@ local_scheme = "node-and-date"
 
 [tool.setuptools.packages.find]
 exclude = ["tests*", "tests.*"]
+
+
+[tool.pytest.ini_options]
+# Only collect tests from these directories
+testpaths = ["tests"]
+# Add spires to python path to avoid import mismatches
+pythonpath = ["."]
+# Don't collect from examples (they require optional dependencies)
+norecursedirs = ["examples", "doc", "build", "dist", ".git", ".tox"]
+# Collect doctests from spires package
+addopts = "--doctest-modules --ignore=tests/example.py --ignore=spires/reprojectMODIS.py"
+# Configure doctest behavior
+doctest_optionflags = ["NORMALIZE_WHITESPACE", "ELLIPSIS"]
+# Only collect test files matching these patterns
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

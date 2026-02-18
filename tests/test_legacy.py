@@ -43,8 +43,3 @@ def test_lookup():
 
     expected = numpy.array([8.847613e-01, 4.868147e-02, 4.299302e+02, 1.819897e+01])
     numpy.testing.assert_allclose(res.x, expected, rtol=1e-5)
-
-
-
-
-test_lookup()

@@ -30,17 +30,21 @@ jobs:
         path: .git/lfs
         key: lfs-${{ hashFiles('.gitattributes') }}
 
-    - name: Download test data from external source
+    - name: Pull small test data files from LFS
       run: |
-        # Skip LFS - both fork and upstream exceed quota
-        # TODO: Upload LUT files to Zenodo/institutional server and download here
-        # Example:
+        # Pull small subset files (~5 MB total) from LFS
+        git lfs pull
+        echo "Downloaded small test data subsets from LFS"
+
+    - name: Download large test data (optional)
+      run: |
+        # Optionally download full test data from Zenodo
+        # Uncomment when Zenodo DOIs are available (see tests/data/README.md)
         # mkdir -p tests/data
-        # curl -L -o tests/data/LUT_MODIS.mat https://zenodo.org/.../LUT_MODIS.mat
-        # curl -L -o tests/data/lut_sentinel2b_b2to12_3um_dust.mat https://zenodo.org/.../lut_sentinel2b.mat
-        # curl -L -o tests/data/sentinel_r.nc https://zenodo.org/.../sentinel_r.nc
-        # curl -L -o tests/data/sentinel_r0.nc https://zenodo.org/.../sentinel_r0.nc
-        echo "LFS quota exceeded - tests requiring large data files will be skipped"
+        # curl -L -o tests/data/LUT_MODIS.mat https://zenodo.org/record/XXXXX/files/LUT_MODIS.mat
+        # curl -L -o tests/data/sentinel_r.nc https://zenodo.org/record/XXXXX/files/sentinel_r.nc
+        # curl -L -o tests/data/sentinel_r0.nc https://zenodo.org/record/XXXXX/files/sentinel_r0.nc
+        echo "Using subset test data - full data available on Zenodo"
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5

@@ -30,6 +30,7 @@ jobs:
         CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
         CIBW_MANYLINUX_AARCH64_IMAGE: manylinux_2_28
         # Install dependencies before building - build nlopt from source
+        # Install to /usr (not /usr/local) so auditwheel can find it
         # Run ldconfig to update library cache for auditwheel
         CIBW_BEFORE_BUILD_LINUX: >
           yum install -y wget gcc-c++ cmake swig &&
@@ -37,15 +38,13 @@ jobs:
           tar -xzf v2.7.1.tar.gz &&
           cd nlopt-2.7.1 &&
           mkdir build && cd build &&
-          cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local &&
+          cmake .. -DCMAKE_INSTALL_PREFIX=/usr &&
           make && make install &&
           ldconfig &&
           cd ../.. && rm -rf nlopt-2.7.1 v2.7.1.tar.gz
         CIBW_BEFORE_BUILD_MACOS: brew install swig nlopt
-        # Set library path for auditwheel to find nlopt
-        CIBW_ENVIRONMENT_LINUX: "LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH"
         # Bundle nlopt library into wheel for standalone distribution
-        CIBW_REPAIR_WHEEL_COMMAND_LINUX: "LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH auditwheel repair -w {dest_dir} {wheel} --plat manylinux_2_28_x86_64"
+        CIBW_REPAIR_WHEEL_COMMAND_LINUX: "auditwheel repair -w {dest_dir} {wheel} --plat manylinux_2_28_x86_64"
         CIBW_REPAIR_WHEEL_COMMAND_MACOS: "delocate-wheel --require-archs {delocate_archs} -w {dest_dir} -v {wheel}"
         # Skip wheel test for now - SWIG module import needs investigation
         # CIBW_TEST_COMMAND: python -c "import spires; print(spires.__version__)"

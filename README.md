@@ -1,6 +1,7 @@
 # SpiPy
 
 [![PyPI version](https://badge.fury.io/py/spires.svg)](https://pypi.org/project/spires/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18747284.svg)](https://doi.org/10.5281/zenodo.18747284)
 [![Documentation Status](https://readthedocs.org/projects/spipy/badge/?version=latest)](https://spipy.readthedocs.io/en/latest/?badge=latest)
 [![Build and Test](https://github.com/NiklasPhabian/SpiPy/workflows/Build%20and%20Test/badge.svg)](https://github.com/NiklasPhabian/SpiPy/actions)
 [![Python 3.9-3.14](https://img.shields.io/badge/python-3.9--3.14-blue.svg)](https://github.com/NiklasPhabian/SpiPy)
@@ -244,9 +245,9 @@ If you use this software, please cite the algorithm paper, software implementati
   author={Bair, Edward H. and Griessbaum, Niklas},
   year={2026},
   url={https://github.com/NiklasPhabian/SpiPy},
-  version={0.2.2},
-  doi={10.5281/zenodo.XXXXXXX},
-  note={DOI will be updated after Zenodo release. See CITATION.cff for full metadata}
+  version={0.2.8},
+  doi={10.5281/zenodo.18747284},
+  note={See CITATION.cff for full metadata}
 }
 ```
 

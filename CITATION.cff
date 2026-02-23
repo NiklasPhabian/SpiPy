@@ -16,7 +16,7 @@ date-released: 2026-02-23
 repository-code: "https://github.com/NiklasPhabian/SpiPy"
 url: "https://spipy.readthedocs.io"
 license: MIT
-doi: 10.5281/zenodo.XXXXXXX  # Will be updated after Zenodo release
+doi: 10.5281/zenodo.18747284
 keywords:
   - remote sensing
   - snow properties

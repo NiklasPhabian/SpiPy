@@ -23,8 +23,8 @@ cache:
     # Download test data from Zenodo (avoids LFS quota issues)
     - mkdir -p tests/data
     - echo "Downloading Sentinel-2 LUT from Zenodo..."
-    - curl -L -o tests/data/lut_sentinel2b_b2to12_3um_dust.mat https://zenodo.org/records/18701286/files/lut_sentinel2b_b2to12_3um_dust.mat
-    - echo "✓ Sentinel-2 LUT downloaded"
+    - wget -O tests/data/lut_sentinel2b_b2to12_3um_dust.mat https://zenodo.org/records/18701286/files/lut_sentinel2b_b2to12_3um_dust.mat
+    - echo "✓ Sentinel-2 LUT downloaded ($(du -h tests/data/lut_sentinel2b_b2to12_3um_dust.mat | cut -f1))"
     # Run tests, skipping test_legacy.py which needs LUT_MODIS.mat (not on Zenodo)
     - pytest --doctest-modules --ignore=tests/test_legacy.py
 

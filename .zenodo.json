@@ -4,13 +4,11 @@
   "creators": [
     {
       "name": "Bair, Edward H.",
-      "affiliation": "University of California, Santa Barbara",
-      "orcid": "0000-0002-7654-3210"
+      "affiliation": "University of California, Santa Barbara"
     },
     {
       "name": "Griessbaum, Niklas",
-      "affiliation": "Leidos, Inc.",
-      "orcid": "0009-0006-4383-6696"
+      "affiliation": "Leidos, Inc."
     }
   ],
   "license": "MIT",

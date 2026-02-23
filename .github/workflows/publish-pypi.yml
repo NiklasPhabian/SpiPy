@@ -30,6 +30,7 @@ jobs:
         CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
         CIBW_MANYLINUX_AARCH64_IMAGE: manylinux_2_28
         # Install dependencies before building - build nlopt from source
+        # Run ldconfig to update library cache for auditwheel
         CIBW_BEFORE_BUILD_LINUX: >
           yum install -y wget gcc-c++ cmake swig &&
           wget https://github.com/stevengj/nlopt/archive/v2.7.1.tar.gz &&
@@ -38,8 +39,11 @@ jobs:
           mkdir build && cd build &&
           cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local &&
           make && make install &&
+          ldconfig &&
           cd ../.. && rm -rf nlopt-2.7.1 v2.7.1.tar.gz
         CIBW_BEFORE_BUILD_MACOS: brew install swig nlopt
+        # Update LD_LIBRARY_PATH for auditwheel
+        CIBW_ENVIRONMENT_LINUX: "LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH"
         # Test the wheel
         CIBW_TEST_COMMAND: python -c "import spires; print(spires.__version__)"
         CIBW_TEST_REQUIRES: pytest

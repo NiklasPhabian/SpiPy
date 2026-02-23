@@ -58,11 +58,6 @@ Full-resolution test data available on Zenodo:
   - Landsat OLI lookup table (also in repository via LFS)
   - Download: https://zenodo.org/records/18701286/files/lut_oli_b1to7_3um_dust.mat
 
-- **LUT_MODIS.mat** (537 MB)
-  - Legacy MODIS lookup table format
-  - For compatibility with older tests
-  - Download: https://zenodo.org/records/18701286/files/LUT_MODIS.mat
-
 ### Test Imagery
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18704072.svg)](https://doi.org/10.5281/zenodo.18704072)
 

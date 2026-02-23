@@ -1,9 +1,12 @@
 # SpiPy
 
-[![PyPI version](https://badge.fury.io/py/spires.svg)](https://badge.fury.io/py/spires)
+[![PyPI version](https://badge.fury.io/py/spires.svg)](https://pypi.org/project/spires/)
 [![Documentation Status](https://readthedocs.org/projects/spipy/badge/?version=latest)](https://spipy.readthedocs.io/en/latest/?badge=latest)
-[![Build Status](https://github.com/edwardbair/SpiPy/workflows/Build%20and%20Test/badge.svg)](https://github.com/edwardbair/SpiPy/actions)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXX)
+[![Build and Test](https://github.com/NiklasPhabian/SpiPy/workflows/Build%20and%20Test/badge.svg)](https://github.com/NiklasPhabian/SpiPy/actions)
+[![Python 3.9-3.14](https://img.shields.io/badge/python-3.9--3.14-blue.svg)](https://github.com/NiklasPhabian/SpiPy)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**[📦 View Source on GitHub](https://github.com/NiklasPhabian/SpiPy)** | **[📖 Documentation](https://spipy.readthedocs.io)** | **[🐛 Report Issues](https://github.com/NiklasPhabian/SpiPy/issues)**
 
 SpiPy is a Python implementation of [SPIRES](https://ieeexplore.ieee.org/document/9290428) (SPectral Inversion of REflectance from Snow), originally implemented in MATLAB ([SPIRES GitHub repository](https://github.com/edwardbair/SPIRES)).
 
@@ -25,7 +28,7 @@ SPIRES retrieves snow properties (grain size, dust concentration, fractional sno
 pip install spires
 ```
 
-**Note:** Pre-built binary wheels are available for Linux and macOS (Python 3.9-3.12). For other platforms or to build from source, see below.
+**Note:** Pre-built binary wheels are available for Linux and macOS (Python 3.9-3.14). For other platforms or to build from source, see below.
 
 ### Install from Source
   
@@ -143,17 +146,40 @@ cd doc/
 make html
 ```
 
-## Lookup Tables
+## Lookup Tables and Test Data
 
-Simulated Mie-scattering snow reflectance lookup tables are available at:
-- ftp://ftp.snow.ucsb.edu/pub/org/snow/users/nbair/SpiPy
+### Lookup Tables
 
-Download example:
+Simulated Mie-scattering snow reflectance lookup tables are available on Zenodo:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18701286.svg)](https://doi.org/10.5281/zenodo.18701286)
+
+- **MODIS**: `LUT_MODIS.mat` (537 MB)
+- **Sentinel-2**: `lut_sentinel2b_b2to12_3um_dust.mat` (70 MB)
+
+Download using the helper script:
 ```bash
-wget "ftp://ftp.snow.ucsb.edu/pub/org/snow/users/nbair/SpiPy/LUT_MODIS.mat"
+python scripts/download_test_data.py --luts
 ```
 
-**Note:** Lookup tables are currently available for MODIS and Sentinel-2. Landsat support is planned.
+Or download directly:
+```bash
+curl -L -o LUT_MODIS.mat https://zenodo.org/records/18701286/files/LUT_MODIS.mat
+curl -L -o lut_sentinel2b_b2to12_3um_dust.mat https://zenodo.org/records/18701286/files/lut_sentinel2b_b2to12_3um_dust.mat
+```
+
+**Note:** The Sentinel-2 LUT is also included in the repository via Git LFS. Landsat lookup tables are planned.
+
+### Test Data
+
+Full-resolution test imagery for validation is available on Zenodo:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18704072.svg)](https://doi.org/10.5281/zenodo.18704072)
+
+- **Sentinel-2 reflectance**: `sentinel_r.nc` (1.4 GB, 921×1347 pixels)
+- **Background reflectance**: `sentinel_r0.nc` (705 MB)
+
+Small subsets suitable for CI/testing are included in the repository via Git LFS. See [tests/data/README.md](tests/data/README.md) for details.
 
 ## Performance
 
@@ -195,7 +221,7 @@ See LICENSE file for details.
 
 ## Citation
 
-If you use this software, please cite both the algorithm paper and the software implementation:
+If you use this software, please cite the algorithm paper, software implementation, and any datasets you use:
 
 **Algorithm:**
 ```bibtex
@@ -220,6 +246,30 @@ If you use this software, please cite both the algorithm paper and the software 
   url={https://github.com/edwardbair/SpiPy},
   version={0.2.0},
   note={See CITATION.cff for full metadata}
+}
+```
+
+**Lookup Tables (if used):**
+```bibtex
+@dataset{bair2026spires_luts,
+  author       = {Bair, Edward and Dozier, Jeff},
+  title        = {{SPIRES} Snow Reflectance Lookup Tables},
+  year         = 2026,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.18701286},
+  url          = {https://doi.org/10.5281/zenodo.18701286}
+}
+```
+
+**Test Data (if used):**
+```bibtex
+@dataset{griessbaum2026sentinel2_testdata,
+  author       = {Griessbaum, Niklas},
+  title        = {Sentinel-2 reflectance data for testing the {SpiPy} implementation of the {SPIRES} algorithm},
+  year         = 2026,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.18704072},
+  url          = {https://doi.org/10.5281/zenodo.18704072}
 }
 ```
 

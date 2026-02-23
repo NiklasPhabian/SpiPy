@@ -17,6 +17,7 @@ h5py
 scipy
 xarray
 netCDF4
+dask[distributed]
 
 # Version detection
 setuptools-scm

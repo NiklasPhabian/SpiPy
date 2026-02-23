@@ -24,3 +24,8 @@ __pycache__/
 
 # Internal/OPSEC documents (not for public release)
 /OPSEC/
+
+# Large test data files (download from Zenodo or use subsets)
+tests/data/LUT_MODIS.mat
+tests/data/sentinel_r.nc
+tests/data/sentinel_r0.nc

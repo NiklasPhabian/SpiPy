@@ -1,8 +1,15 @@
 import spires
 import numpy as np
 import xarray
-import dask.distributed
 import tempfile
+
+# Optional dask support
+try:
+    import dask.distributed
+    import dask.array
+    HAS_DASK = True
+except ImportError:
+    HAS_DASK = False
 
 
 def invert_one(spectrum_target, spectrum_background, interpolator, solar_angle, shade, mode=4):
@@ -25,6 +32,9 @@ def invert_vectorized_array(r, r0):
 
 
 def invert_ufunc(r, r0, lut_interpolator, solar_z, shade, mode, cluster):
+    if not HAS_DASK:
+        raise ImportError("dask is required for invert_ufunc. Install with: pip install 'spires[docs]' or pip install dask")
+
     res = xarray.apply_ufunc(invert_vectorized_array,
                              r,
                              r0,
@@ -34,7 +44,7 @@ def invert_ufunc(r, r0, lut_interpolator, solar_z, shade, mode, cluster):
                              dask_gufunc_kwargs={'allow_rechunk': False, 'output_sizes': {'property': 4}},
                              output_dtypes=[float],
                              vectorize=False)
-    
+
     with dask.distributed.Client(cluster) as client:
         res = res.compute()
 
@@ -43,11 +53,13 @@ def invert_ufunc(r, r0, lut_interpolator, solar_z, shade, mode, cluster):
     res = res.to_dataset(dim='property')
 
 
-def speedy_invert_dask(spectra_targets, spectra_backgrounds, obs_solar_angles, 
+def speedy_invert_dask(spectra_targets, spectra_backgrounds, obs_solar_angles,
                        bands, solar_angles, dust_concentrations, grain_sizes, reflectances, cluster, chunksize ):
     """
     bands, solar_angles, dust_concentrations, grain_sizes, reflectances are supposed to be numpy arrays!
     """
+    if not HAS_DASK:
+        raise ImportError("dask is required for speedy_invert_dask. Install with: pip install 'spires[docs]' or pip install dask")
 
     tmp_st = tempfile.NamedTemporaryFile(suffix=".nc")
     spectra_targets.to_netcdf(tmp_st.name, engine='netcdf4', format='NETCDF4')

@@ -10,7 +10,7 @@ conda_prefix = os.environ.get("CONDA_PREFIX", "/usr")  # fallback if not in cond
 
 
 NLOP_LIB_DIRS = [
-    '/opt/homebrew/lib'                     # MacOS BS
+    '/opt/homebrew/lib',                    # MacOS BS
     #'/opt/homebrew/Cellar/nlopt/2.7.1/lib', # For ARM
     #'/usr/local/Cellar/nlopt/2.7.1/lib',    # For x86
     '/usr/lib',                             # system library path
@@ -19,7 +19,7 @@ NLOP_LIB_DIRS = [
 ]
 
 NLOP_INCLUDE_DIRS = [
-    '/opt/homebrew/include'
+    '/opt/homebrew/include',
     #'/opt/homebrew/Cellar/nlopt/2.7.1/include',    # For ARM
     #'/usr/local/Cellar/nlopt/2.7.1/include',       # For x86
     '/usr/include',                                # system includes (e.g. nlopt.hpp)

@@ -44,6 +44,8 @@ jobs:
         CIBW_BEFORE_BUILD_MACOS: brew install swig nlopt
         # Update LD_LIBRARY_PATH for auditwheel
         CIBW_ENVIRONMENT_LINUX: "LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH"
+        # Custom repair command to tell auditwheel where to find nlopt
+        CIBW_REPAIR_WHEEL_COMMAND_LINUX: "auditwheel repair --lib-sdir /usr/local/lib -w {dest_dir} {wheel}"
         # Test the wheel
         CIBW_TEST_COMMAND: python -c "import spires; print(spires.__version__)"
         CIBW_TEST_REQUIRES: pytest

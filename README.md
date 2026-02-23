@@ -8,7 +8,7 @@
 
 **[📦 View Source on GitHub](https://github.com/NiklasPhabian/SpiPy)** | **[📖 Documentation](https://spipy.readthedocs.io)** | **[🐛 Report Issues](https://github.com/NiklasPhabian/SpiPy/issues)**
 
-SpiPy is a Python implementation of [SPIRES](https://ieeexplore.ieee.org/document/9290428) (SPectral Inversion of REflectance from Snow), originally implemented in MATLAB ([SPIRES GitHub repository](https://github.com/edwardbair/SPIRES)).
+SpiPy is a Python implementation of [SPIRES](https://ieeexplore.ieee.org/document/9290428) (Snow Property Inversion From Remote Sensing), originally implemented in MATLAB ([SPIRES GitHub repository](https://github.com/edwardbair/SPIRES)).
 
 ## Overview
 
@@ -239,13 +239,14 @@ If you use this software, please cite the algorithm paper, software implementati
 
 **Software:**
 ```bibtex
-@software{bair2024spipy,
+@software{bair2026spipy,
   title={SpiPy: Python implementation of SPIRES snow property inversion},
-  author={Bair, Ned and Griessbaum, Niklas},
-  year={2024},
-  url={https://github.com/edwardbair/SpiPy},
-  version={0.2.0},
-  note={See CITATION.cff for full metadata}
+  author={Bair, Edward H. and Griessbaum, Niklas},
+  year={2026},
+  url={https://github.com/NiklasPhabian/SpiPy},
+  version={0.2.2},
+  doi={10.5281/zenodo.XXXXXXX},
+  note={DOI will be updated after Zenodo release. See CITATION.cff for full metadata}
 }
 ```
 

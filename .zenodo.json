@@ -3,14 +3,14 @@
   "description": "SpiPy is a Python implementation of SPIRES (SPectral Inversion of REflectance from Snow), a spectral unmixing algorithm for analyzing snow reflectance data from satellite imagery. It retrieves snow properties (grain size, dust concentration, fractional snow-covered area) using lookup tables generated from Mie-scattering theory. This implementation features a hybrid Python/C++ architecture achieving 3000x speedup over pure Python implementations.",
   "creators": [
     {
-      "name": "Bair, Ned",
+      "name": "Bair, Edward H.",
       "affiliation": "University of California, Santa Barbara",
       "orcid": "0000-0002-7654-3210"
     },
     {
       "name": "Griessbaum, Niklas",
       "affiliation": "Leidos, Inc.",
-      "orcid": "0000-0000-0000-0000"
+      "orcid": "0009-0006-4383-6696"
     }
   ],
   "license": "MIT",

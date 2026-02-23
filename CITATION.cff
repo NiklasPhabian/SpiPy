@@ -11,7 +11,7 @@ authors:
     given-names: Niklas
     affiliation: "Leidos, Inc."
     orcid: "https://orcid.org/0000-0001-5037-6266"
-version: 0.2.7
+version: 0.2.8
 date-released: 2026-02-23
 repository-code: "https://github.com/NiklasPhabian/SpiPy"
 url: "https://spipy.readthedocs.io"

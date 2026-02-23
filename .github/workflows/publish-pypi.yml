@@ -28,7 +28,9 @@ jobs:
         CIBW_SKIP: "*-win32 *-manylinux_i686 *-musllinux*"
         # Install dependencies before building - build nlopt from source
         CIBW_BEFORE_BUILD_LINUX: >
-          yum install -y wget gcc-c++ cmake swig || apt-get install -y wget g++ cmake swig &&
+          (sed -i 's|^mirrorlist=|#mirrorlist=|g' /etc/yum.repos.d/CentOS-* || true) &&
+          (sed -i 's|^#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* || true) &&
+          (yum install -y wget gcc-c++ cmake swig || apt-get update && apt-get install -y wget g++ cmake swig) &&
           wget https://github.com/stevengj/nlopt/archive/v2.7.1.tar.gz &&
           tar -xzf v2.7.1.tar.gz &&
           cd nlopt-2.7.1 &&

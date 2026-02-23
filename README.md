@@ -27,7 +27,7 @@ SPIRES retrieves snow properties (grain size, dust concentration, fractional sno
 pip install spires
 ```
 
-**Note:** Pre-built binary wheels are available for Linux and macOS (Python 3.9-3.12). For other platforms or to build from source, see below.
+**Note:** Pre-built binary wheels are available for Linux and macOS (Python 3.9-3.14). For other platforms or to build from source, see below.
 
 ### Install from Source
   

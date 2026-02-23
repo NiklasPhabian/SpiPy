@@ -30,23 +30,26 @@ jobs:
         path: .git/lfs
         key: lfs-${{ hashFiles('.gitattributes') }}
 
-    - name: Pull small test data files from LFS
+    - name: Download essential test data from Zenodo
       run: |
-        # Pull small subset files (~5 MB total) from LFS
-        git lfs pull
-        echo "Downloaded small test data subsets from LFS"
+        # Download Sentinel-2 LUT from Zenodo (avoids LFS quota issues)
+        mkdir -p tests/data
+        echo "Downloading Sentinel-2 LUT from Zenodo (70 MB)..."
+        curl -L -o tests/data/lut_sentinel2b_b2to12_3um_dust.mat \
+          https://zenodo.org/records/18701286/files/lut_sentinel2b_b2to12_3um_dust.mat
+        echo "✓ Essential test data downloaded"
 
     - name: Download large test data (optional)
       run: |
         # Optionally download full test data from Zenodo
         # Uncomment to enable full-resolution tests (adds ~15 minutes to CI time)
-        # mkdir -p tests/data
         # curl -L -o tests/data/LUT_MODIS.mat https://zenodo.org/records/18701286/files/LUT_MODIS.mat
         # curl -L -o tests/data/sentinel_r.nc https://zenodo.org/records/18704072/files/sentinel_r.nc
         # curl -L -o tests/data/sentinel_r0.nc https://zenodo.org/records/18704072/files/sentinel_r0.nc
-        echo "Using subset test data - full data available on Zenodo"
-        echo "LUTs: https://doi.org/10.5281/zenodo.18701286"
-        echo "Imagery: https://doi.org/10.5281/zenodo.18704072"
+        echo "Using essential test data only"
+        echo "Full datasets available at:"
+        echo "  LUTs: https://doi.org/10.5281/zenodo.18701286"
+        echo "  Imagery: https://doi.org/10.5281/zenodo.18704072"
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
@@ -81,9 +84,10 @@ jobs:
     - name: Run tests
       shell: bash -l {0}
       run: |
-        # Skip tests requiring large LFS files if not available
+        # Skip tests requiring LUT_MODIS.mat (legacy MODIS tests)
         if [ ! -f tests/data/LUT_MODIS.mat ]; then
-          pytest -v --ignore=tests/test_legacy.py --ignore=tests/test_comparison.py
+          echo "Skipping MODIS-specific tests (LUT_MODIS.mat not available)"
+          pytest -v --ignore=tests/test_legacy.py
         else
           pytest -v
         fi

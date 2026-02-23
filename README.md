@@ -1,9 +1,10 @@
 # SpiPy
 
-[![PyPI version](https://badge.fury.io/py/spires.svg)](https://badge.fury.io/py/spires)
+[![PyPI version](https://badge.fury.io/py/spires.svg)](https://pypi.org/project/spires/)
 [![Documentation Status](https://readthedocs.org/projects/spipy/badge/?version=latest)](https://spipy.readthedocs.io/en/latest/?badge=latest)
-[![Build Status](https://github.com/edwardbair/SpiPy/workflows/Build%20and%20Test/badge.svg)](https://github.com/edwardbair/SpiPy/actions)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXX)
+[![Build and Test](https://github.com/NiklasPhabian/SpiPy/workflows/Build%20and%20Test/badge.svg)](https://github.com/NiklasPhabian/SpiPy/actions)
+[![Python 3.9-3.14](https://img.shields.io/badge/python-3.9--3.14-blue.svg)](https://github.com/NiklasPhabian/SpiPy)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **[📦 View Source on GitHub](https://github.com/NiklasPhabian/SpiPy)** | **[📖 Documentation](https://spipy.readthedocs.io)** | **[🐛 Report Issues](https://github.com/NiklasPhabian/SpiPy/issues)**
 

@@ -39,12 +39,14 @@ jobs:
     - name: Download large test data (optional)
       run: |
         # Optionally download full test data from Zenodo
-        # Uncomment when Zenodo DOIs are available (see tests/data/README.md)
+        # Uncomment to enable full-resolution tests (adds ~15 minutes to CI time)
         # mkdir -p tests/data
-        # curl -L -o tests/data/LUT_MODIS.mat https://zenodo.org/record/XXXXX/files/LUT_MODIS.mat
-        # curl -L -o tests/data/sentinel_r.nc https://zenodo.org/record/XXXXX/files/sentinel_r.nc
-        # curl -L -o tests/data/sentinel_r0.nc https://zenodo.org/record/XXXXX/files/sentinel_r0.nc
+        # curl -L -o tests/data/LUT_MODIS.mat https://zenodo.org/records/18701286/files/LUT_MODIS.mat
+        # curl -L -o tests/data/sentinel_r.nc https://zenodo.org/records/18704072/files/sentinel_r.nc
+        # curl -L -o tests/data/sentinel_r0.nc https://zenodo.org/records/18704072/files/sentinel_r0.nc
         echo "Using subset test data - full data available on Zenodo"
+        echo "LUTs: https://doi.org/10.5281/zenodo.18701286"
+        echo "Imagery: https://doi.org/10.5281/zenodo.18704072"
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5

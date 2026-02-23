@@ -42,9 +42,9 @@ jobs:
           ldconfig &&
           cd ../.. && rm -rf nlopt-2.7.1 v2.7.1.tar.gz
         CIBW_BEFORE_BUILD_MACOS: brew install swig nlopt
-        # Skip auditwheel repair - nlopt must be installed on target system
-        # Users should install nlopt via: conda install nlopt OR apt install libnlopt0
-        CIBW_REPAIR_WHEEL_COMMAND_LINUX: "cp {wheel} {dest_dir}"
+        # Use auditwheel addtag to add manylinux tag without bundling nlopt
+        # nlopt must be installed on target system via: conda install nlopt OR apt install libnlopt0
+        CIBW_REPAIR_WHEEL_COMMAND_LINUX: "auditwheel addtag --plat manylinux_2_28_x86_64 --wheel-dir {dest_dir} {wheel}"
         CIBW_REPAIR_WHEEL_COMMAND_MACOS: "delocate-wheel --require-archs {delocate_archs} -w {dest_dir} -v {wheel}"
         # Skip wheel test for now - SWIG module import needs investigation
         # CIBW_TEST_COMMAND: python -c "import spires; print(spires.__version__)"

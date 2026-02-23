@@ -116,7 +116,5 @@ jobs:
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        # For testing, use TestPyPI first:
-        repository-url: https://test.pypi.org/legacy/
-        # For production, comment out repository-url
+        # Production PyPI (Trusted Publishing configured)
         verbose: true
